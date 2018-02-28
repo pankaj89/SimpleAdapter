@@ -14,7 +14,7 @@ compile 'com.master.android:simpleradapter:1.0'
 ```
 
 ### Creating View Holder
-####Java
+#### Java
 ```java
 final ArrayList<User> list = new ArrayList<>();        
 list.add(new User("Pankaj"));
@@ -30,7 +30,7 @@ recyclerView.setAdapter(SimpleAdapter.with(R.layout.item, list, new SimpleAdapte
 }));
 ```
 
-####Kotlin
+#### Kotlin
 ```java
 final ArrayList<User> list = new ArrayList<>();        
 list.add(new User("Pankaj"));
