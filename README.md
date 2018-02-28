@@ -1,4 +1,4 @@
-# Simpler Recycler View Adapter
+# SimpleAdapter
 
 [![N|Solid](https://img.shields.io/badge/Android%20Arsenal-Simpler%20Recycler%20View%20Adapter-brightgreen.svg)](https://android-arsenal.com/details/1/5354)
 
