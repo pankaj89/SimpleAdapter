@@ -31,19 +31,17 @@ recyclerView.setAdapter(SimpleAdapter.with(R.layout.item, list, new SimpleAdapte
 ```
 
 #### Kotlin
-```java
-final ArrayList<User> list = new ArrayList<>();        
-list.add(new User("Pankaj"));
-list.add(new User("Sumit"));
+```kotlin
+val list = ArrayList<User>()
+        
+list.add(User("Pankaj"))
+list.add(User("Sumit"))
 
-RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-recyclerView.setLayoutManager(new LinearLayoutManager(this));
-recyclerView.setAdapter(SimpleAdapter.with(R.layout.item, list, new SimpleAdapter.Binder<User, ItemBinding>() {
-    @Override
-    public void onBind(int position, User model, ItemBinding binding) {
-        binding.text.setText(model.name);
-    }
-}));
+val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+recyclerView.layoutManager = LinearLayoutManager(this@MyActivity)
+recyclerView.adapter = with(R.layout.item, list, { position: Int, model: User, binding: ItemBinding ->
+    binding.text.setText(model.name)
+})
 ```
 
 ### License
