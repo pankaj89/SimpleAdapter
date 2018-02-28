@@ -10,7 +10,7 @@ SimpleAdapter used to simplfy the adapter structure for RecyclerView with databi
 ### Download
 Include the following dependency in your apps build.gradle file.
 ```
-compile 'com.master.android:simpleradapter:1.0'
+compile 'com.master.android:simpleadapter:1.0'
 ```
 
 ### Creating View Holder
