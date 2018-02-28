@@ -3,9 +3,9 @@
 [![N|Solid](https://img.shields.io/badge/Android%20Arsenal-Simpler%20Recycler%20View%20Adapter-brightgreen.svg)](https://android-arsenal.com/details/1/5354)
 
 SimpleAdapter used to simplfy the adapter structure for RecyclerView with databinding
-  - Easy to use
-  - No need to create adapter (Seperate java files)
-  - Use of databind
+  - Easy to use.
+  - No need to create adapter (Seperate java files).
+  - Use of databinding.
 
 ### Download
 Include the following dependency in your apps build.gradle file.
