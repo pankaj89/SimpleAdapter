@@ -13,7 +13,7 @@ Include the following dependency in your apps build.gradle file.
 compile 'com.master.android:simpleadapter:1.0'
 ```
 
-### Creating View Holder
+### How to use
 #### Java
 ```java
 final ArrayList<User> list = new ArrayList<>();        
