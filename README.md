@@ -10,7 +10,7 @@ SimpleAdapter used to simplfy the adapter structure for RecyclerView with databi
 ### Download
 Include the following dependency in your apps build.gradle file.
 ```
-compile 'com.master.android:simpleadapter:1.0'
+compile 'com.master.android:simpleadapter:2.0'
 ```
 
 ### How to use
@@ -28,6 +28,24 @@ recyclerView.setAdapter(SimpleAdapter.with(R.layout.item, list, new SimpleAdapte
         binding.text.setText(model.name);
     }
 }));
+
+##### Using SmartBinder
+recyclerView.setAdapter(SimpleAdapter.with(R.layout.item, list, new SimpleAdapter.SmartBinder<User, ItemBinding>() {
+    @Override
+    public void onBind(int position, User model, ItemBinding binding) {
+        binding.text.setText(model.name);
+    }
+
+    @Override
+    public void onClick(View view, User model, int position) {
+        super.onClick(view, model, position);
+    }
+
+    @Override
+    public void onCheckedChange(View view, User model, int position) {
+        super.onCheckedChange(view, model, position);
+    }
+}).setClickableViews(R.id.text).setCheckableView(R.id.checkbox));
 ```
 
 #### Kotlin
@@ -42,6 +60,21 @@ recyclerView.layoutManager = LinearLayoutManager(this@MyActivity)
 recyclerView.adapter = with(R.layout.item, list, { position: Int, model: User, binding: ItemBinding ->
     binding.text.setText(model.name)
 })
+
+##### Using SmartBinder
+recyclerView.adapter = with(R.layout.item, list, object : SimpleAdapter.SmartBinder<User, ItemBinding>() {
+    override fun onBind(position: Int, model: User, binding: ItemBinding) {
+        binding.text.setText(model.name)
+    }
+
+    override fun onClick(view: View?, model: User?, position: Int) {
+        super.onClick(view, model, position)
+    }
+
+    override fun onCheckedChange(view: View?, model: User?, position: Int) {
+        super.onCheckedChange(view, model, position)
+    }
+}).setClickableViews(R.id.text).setCheckableView(R.id.checkbox)
 ```
 
 ### License
