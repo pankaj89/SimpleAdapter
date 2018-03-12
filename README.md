@@ -29,7 +29,7 @@ recyclerView.setAdapter(SimpleAdapter.with(R.layout.item, list, new SimpleAdapte
     }
 }));
 
-##### Using SmartBinder
+// Using SmartBinder
 recyclerView.setAdapter(SimpleAdapter.with(R.layout.item, list, new SimpleAdapter.SmartBinder<User, ItemBinding>() {
     @Override
     public void onBind(int position, User model, ItemBinding binding) {
@@ -61,7 +61,7 @@ recyclerView.adapter = with(R.layout.item, list, { position: Int, model: User, b
     binding.text.setText(model.name)
 })
 
-##### Using SmartBinder
+// Using SmartBinder
 recyclerView.adapter = with(R.layout.item, list, object : SimpleAdapter.SmartBinder<User, ItemBinding>() {
     override fun onBind(position: Int, model: User, binding: ItemBinding) {
         binding.text.setText(model.name)
