@@ -1,4 +1,4 @@
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/pankaj89/SimpleAdapter/blob/master/banner-readme-header.svg)
 
 # SimpleAdapter (build with/for kotlin) 
 ####  #2 Line code for adapter
