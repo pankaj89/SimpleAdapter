@@ -1,8 +1,9 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 ext {
     PUBLISH_GROUP_ID = 'com.master.android'
     PUBLISH_ARTIFACT_ID = 'simpleadapter'
-    PUBLISH_VERSION = '2.0'
+    PUBLISH_VERSION = '3.0'
 }
 
 android {
@@ -26,6 +27,10 @@ dependencies {
 
     implementation "com.android.support:recyclerview-v7:26.1.0"
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 //./gradlew clean build generateRelease
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+repositories {
+    mavenCentral()
+}
