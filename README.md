@@ -30,6 +30,17 @@ val adapter = SimpleAdapter.with<User, ItemBinding>(R.layout.item) { adapterPosi
 recyclerView.adapter = adapter
 ```
 You will get adapter position, model and binding simply bind your model with binding
+
+#### Add list to adapter
+```kotlin
+val list = ArrayList<User>()
+for (i in 0..100) {
+    list.add(User("$i"))
+}
+adapter2.addAll(list)
+adapter2.notifyDataSetChanged()
+```
+
 #### Add Multiple Views
 ```kotlin
 adapter.addViewType<Item1Binding>(R.layout.item_1, binder = { adapterPosition, model, binding ->

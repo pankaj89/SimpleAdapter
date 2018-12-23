@@ -61,7 +61,7 @@ APP_HOME="`pwd -P`"
 cd "$SAVED" >/dev/null
 
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
-
+JAVA_HOME=/home/pankaj/Android/studio_3.2/android-studio-ide-181.5014246-linux/android-studio/jre 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
     if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
