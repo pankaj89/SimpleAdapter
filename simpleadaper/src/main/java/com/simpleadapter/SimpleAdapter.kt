@@ -188,7 +188,7 @@ class SimpleAdapter<M> private constructor() : RecyclerView.Adapter<RecyclerView
                     super.onScrolled(recyclerView, dx, dy)
 
                     if (layoutManager != null) {
-                        val totalItemCount = layoutManager.itemCount
+                        val totalItemCount = layoutManager.itemCount - 1
                         var lastVisibleItem = 0
 
                         if (layoutManager is StaggeredGridLayoutManager) {

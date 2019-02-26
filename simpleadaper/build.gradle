@@ -3,14 +3,14 @@ apply plugin: 'kotlin-android'
 ext {
     PUBLISH_GROUP_ID = 'com.master.android'
     PUBLISH_ARTIFACT_ID = 'simpleadapter'
-    PUBLISH_VERSION = '3.0'
+    PUBLISH_VERSION = '3.1'
 }
 
 android {
     compileSdkVersion 26
 
     defaultConfig {
-        minSdkVersion 23
+        minSdkVersion 14
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
