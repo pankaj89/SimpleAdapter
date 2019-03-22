@@ -18,7 +18,7 @@
 ### Setup
 Include the following dependency in your apps build.gradle file.
 ```
-implementation 'com.master.android:simpleadapter:3.1'
+implementation 'com.master.android:simpleadapter:3.2'
 ```
 # How to use (kotlin)
 
