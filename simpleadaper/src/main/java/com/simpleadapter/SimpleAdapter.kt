@@ -1,12 +1,12 @@
 package com.simpleadapter
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -45,10 +45,18 @@ class SimpleAdapter<M> private constructor() : RecyclerView.Adapter<RecyclerView
             if (position == itemCount - 1) {
                 VIEW_PROG
             } else {
-                getViewType(all[position])
+                try {
+                    getViewType(all[position])
+                } catch (e: Exception) {
+                    getViewType(all[position - 1])
+                }
             }
         } else {
-            getViewType(all[position])
+            try {
+                getViewType(all[position])
+            } catch (e: Exception) {
+                getViewType(all[position - 1])
+            }
         }
     }
 
@@ -112,14 +120,17 @@ class SimpleAdapter<M> private constructor() : RecyclerView.Adapter<RecyclerView
             if (viewHolder.binder != null) {
                 if (clickableIds != null && onItemViewClick != null) {
                     val clickListener = View.OnClickListener { view ->
-                        val model: M
+                        try {
+                            val model: M
 
-                        if (isFilterApplied)
-                            model = filteredList[viewHolder.adapterPosition]
-                        else
-                            model = backupList[viewHolder.adapterPosition]
+                            if (isFilterApplied)
+                                model = filteredList[viewHolder.adapterPosition]
+                            else
+                                model = backupList[viewHolder.adapterPosition]
 
-                        onItemViewClick?.invoke(view, model, viewHolder.adapterPosition)
+                            onItemViewClick?.invoke(view, model, viewHolder.adapterPosition)
+                        } catch (e: Exception) {
+                        }
                     }
                     for (clickableId in clickableIds!!) {
                         viewHolder.itemView.findViewById<View>(clickableId)?.setOnClickListener(clickListener)
@@ -147,7 +158,7 @@ class SimpleAdapter<M> private constructor() : RecyclerView.Adapter<RecyclerView
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder !is ProgressViewHolder) {
             if (holder is SimpleAdapter<*>.SimpleViewHolder) {
-                (holder as SimpleAdapter<M>.SimpleViewHolder).binder?.invoke(holder.adapterPosition, if (isFilterApplied) filteredList!![position] else backupList!![position], holder.binding)
+                (holder as SimpleAdapter<M>.SimpleViewHolder).binder?.invoke(holder.adapterPosition, if (isFilterApplied) filteredList!![position] else backupList!![position], holder.binding!!)
             }
         }
     }
@@ -178,13 +189,17 @@ class SimpleAdapter<M> private constructor() : RecyclerView.Adapter<RecyclerView
             if (layoutManager is GridLayoutManager) {
                 layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
-                        return if (getItemViewType(position) == VIEW_PROG) layoutManager.spanCount else 1
+                        try {
+                            return if (getItemViewType(position) == VIEW_PROG) layoutManager.spanCount else 1
+                        } catch (e: Exception) {
+                            return 1
+                        }
                     }
                 }
             }
 
             recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
                     if (layoutManager != null) {
@@ -280,7 +295,7 @@ class SimpleAdapter<M> private constructor() : RecyclerView.Adapter<RecyclerView
     }
 
     private open inner class SimpleViewHolder(parent: ViewGroup, res: Int, var binder: ((Int, M, ViewDataBinding) -> Unit)?) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(res, parent, false)) {
-        var binding: ViewDataBinding = DataBindingUtil.bind(itemView)
+        var binding: ViewDataBinding? = DataBindingUtil.bind(itemView)
     }
 
     //--------NEW VIEW TYPE IMPLEMENTATION--------

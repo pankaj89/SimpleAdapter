@@ -1,13 +1,16 @@
 package com.example
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.os.Handler
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Toast
+import coil.api.load
 import com.example.databinding.Item1Binding
 import com.example.databinding.Item2Binding
 import com.example.databinding.ItemBinding
@@ -22,9 +25,9 @@ class MyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val list = ArrayList<User>()
-
+        val names= arrayOf("pankaj","ami","SUMIT Kumar","Aryan", "Anirudh","Pinky")
         for (i in 0..100) {
-            list.add(User("$i"))
+            list.add(User("${names.get(i % names.size)} $i"))
         }
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -33,9 +36,10 @@ class MyActivity : AppCompatActivity() {
         //Create adapter
         val adapter2 = SimpleAdapter.with<User, ItemBinding>(R.layout.item) { adapterPosition, model, binding ->
             binding.text.text = model.name
+            binding.ivImageView2.load("https://picsum.photos/id/${adapterPosition}/200/200")
         }
 
-        //multiple view holder
+        /*//multiple view holder
         adapter2.addViewType<Item1Binding>(R.layout.item_1, binder = { adapterPosition, model, binding ->
             binding.text1.text = model.name
         }, viewTypeLogic = { model ->
@@ -47,7 +51,7 @@ class MyActivity : AppCompatActivity() {
             binding.text2.text = model.name
         }, viewTypeLogic = { model ->
             model.name.toInt() % 7 == 0
-        })
+        })*/
 
         //clickable views
         adapter2.setClickableViews({ view, model, adapterPosition ->
@@ -56,13 +60,18 @@ class MyActivity : AppCompatActivity() {
 
         //load more
         adapter2.enableLoadMore(recyclerView) {
+            Handler().postDelayed({
+                adapter2.addAll(list)
+                adapter2.notifyDataSetChanged()
+                adapter2.setLoadMoreComplete()
+            },5000)
             true
         }
 
         //for filtering
-        adapter2.performFilter(text = "", filterLogic = { text, model ->
+        /*adapter2.performFilter(text = "", filterLogic = { text, model ->
             model.name.contains(text)
-        })
+        })*/
 
         adapter2.addAll(list)
         adapter2.notifyDataSetChanged()
@@ -82,5 +91,15 @@ class MyActivity : AppCompatActivity() {
                 }
             }
         })
+
+        val swipeToRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.swipeToRefreshLayout)
+        swipeToRefreshLayout.setOnRefreshListener {
+            Handler().postDelayed({
+                adapter2.clear()
+                adapter2.addAll(list)
+                adapter2.notifyDataSetChanged()
+                swipeToRefreshLayout.isRefreshing=false
+            },1000)
+        }
     }
 }

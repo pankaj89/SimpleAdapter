@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/My-SimpleAdapter.iml" filepath="$PROJECT_DIR$/My-SimpleAdapter.iml" group="SimpleAdapter" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SimpleAdapter.iml" filepath="$PROJECT_DIR$/.idea/SimpleAdapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/SimpleAdapter-app.iml" filepath="$PROJECT_DIR$/app/SimpleAdapter-app.iml" group="SimpleAdapter/app" />
+      <module fileurl="file://$PROJECT_DIR$/simpleadaper/SimpleAdapter-simpleadaper.iml" filepath="$PROJECT_DIR$/simpleadaper/SimpleAdapter-simpleadaper.iml" group="SimpleAdapter/simpleadaper" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/simpleadaper/simpleadaper.iml" filepath="$PROJECT_DIR$/simpleadaper/simpleadaper.iml" />
     </modules>
