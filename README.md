@@ -16,9 +16,14 @@
 - ##### Click listeners
 
 ### Setup
+Project level build.gradle file
+```
+maven { url 'https://jitpack.io' }
+```
+
 Include the following dependency in your apps build.gradle file.
 ```
-implementation 'com.master.android:simpleadapter:3.4'
+implementation 'com.master.android:simpleadapter:3.4.1'
 ```
 # How to use (kotlin)
 
