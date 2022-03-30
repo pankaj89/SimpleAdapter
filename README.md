@@ -23,7 +23,7 @@ maven { url 'https://jitpack.io' }
 
 Include the following dependency in your apps build.gradle file.
 ```
-implementation 'com.master.android:simpleadapter:3.4.1'
+implementation 'com.github.pankaj89:SimpleAdapter:3.4.1'
 ```
 # How to use (kotlin)
 
